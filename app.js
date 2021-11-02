@@ -1,60 +1,47 @@
-//const fetchJsonp = require('fetch-jsonp')
-
-const list = document.querySelector('.list')
-const searchBar = document.getElementById('searchbar')
-let output = ''
-
-// searchBar.addEventListener('keyup', (e) => {
-//   const searchString = e.target.value.toLowerCase()
-
-//   const filteredArtists = output.filter((artist) => {
-//     return (
-//       artist.artistName.toLowerCase().includes(searchString) ||
-//       artist.collectionName.toLowerCase().includes(searchString)
-//     )
-//   })
-//   displayArtists(filteredArtists)
-// })
+const albums = document.querySelector('.lists')
+const searchBar = document.querySelector('.searchbar')
+const count = document.querySelector('.count')
 
 searchBar.addEventListener('keyup', (e) => {
   let searchValue = e.target.value
-  // console.log(searchValue)
-
-  //   const filteredArtist = data.results.filter((artist) => {
-  //     return (
-  //       artist.artistName.toLowerCase().includes(searchValue) ||
-  //       artist.collectionName.toLowerCase().includes(searchValue)
-  //     )
-  //   })
 
   fetch(
     `https://itunes.apple.com/search?term=${searchValue}&media=music&entity=album&attribute=artistTerm&limit=200`
   )
     .then((res) => res.json())
     .then((data) => {
-      console.log('data ', data.results)
+      console.log('data: ', data.results)
 
-      display(data.results)
+      displayLists(data.results, searchValue)
     })
     .catch(console.error)
 })
 
-const display = (lists) => {
-  //   const filteredArtist = lists.filter((list) => {
-  //     return (
-  //       list.artistName.toLowerCase().includes(searchValue) ||
-  //       list.collectionName.toLowerCase().includes(searchValue)
-  //     )
-  //   })
+const displayLists = (lists, searchVal) => {
+  count.innerHTML = lists.length + ' results for ' + '"' + searchVal + '"'
 
-  lists.forEach((list) => {
-    output += `
-            <li class="artist">
-                <img class="artist__img" src="${list.artworkUrl100}"></img>
-                <p class="album">${list.collectionName}</p>
-            </li>
-        `
-  })
+  albums.innerHTML = ''
 
-  list.innerHTML = output
+  for (let i = 0; i < lists.length; i++) {
+    albums.appendChild(
+      displayList(lists[i].artworkUrl100, lists[i].collectionName)
+    )
+  }
+}
+
+const displayList = (img, alb) => {
+  const artist = document.createElement('li')
+  artist.classList = 'list__artist'
+
+  const image = document.createElement('img')
+  image.classList = 'list__artist-img'
+  image.setAttribute('src', img)
+  artist.append(image)
+
+  const album = document.createElement('p')
+  album.classList = 'list__artist-album'
+  album.textContent = alb
+  artist.append(album)
+
+  return artist
 }
