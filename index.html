@@ -19,10 +19,10 @@
   
   <body>
     <header class="search">
-        <form class="search__wrapper">
-            <input type="text" class='searchbar' id='searchbar' placeholder="Search..."></input>
-            <button class="fa fa-search"></button>
-        </form>
+        <div class="search__wrapper">
+            <input type="text" class='searchbar' id='searchbar' placeholder="Search..." onkeyup="typed(this)"></input>
+            <button class="fa fa-search" onclick="clicked()"></button>
+        </div>
     </header>
 
     <main>
