@@ -3,6 +3,7 @@
   --dark-gray: rgb(59, 59, 59);
   --light-gray: rgb(224, 224, 224);
   --gray: rgb(119, 119, 119);
+  --white: rgb(255, 255, 255);
 }
 
 * {
@@ -31,32 +32,29 @@ header {
   justify-content: center;
 }
 
-input {
+.searchbar {
   width: 40%;
   height: 1.7rem;
   border-radius: 1rem;
   border: none;
+  outline: none;
   padding: 0 1rem;
   margin: 0 auto 0.3rem;
   text-align: left;
   font-size: 1rem;
 }
 
-input::placeholder {
+.searchbar::placeholder {
   color: var(--gray);
 }
 
-input:hover {
+.searchbar:hover {
   transform: scaleX(1.1);
   transition-timing-function: ease-in;
   transition: 0.4s;
 }
 
-input:focus {
-  outline: none;
-}
-
-button {
+.searchbtn {
   position: absolute;
   background-color: transparent;
   border: none;
@@ -94,6 +92,7 @@ ul {
   justify-content: center;
   align-items: center;
   list-style-type: none;
+  overflow: auto;
 }
 
 li {
@@ -107,4 +106,27 @@ li {
   padding-top: 0.2rem;
   height: 14rem;
   margin: 1rem;
+}
+
+.pagination {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.pagebtn {
+  margin: 0.1rem;
+  padding: 0.5rem;
+  background-color: var(--light-gray);
+  color: var(--blue-green);
+  font-size: 0.7rem;
+  cursor: pointer;
+  outline: none;
+  border: 1px solid var(--blue-green);
+}
+
+.pagebtn-active {
+  background-color: var(--blue-green);
+  color: var(--white);
 }
