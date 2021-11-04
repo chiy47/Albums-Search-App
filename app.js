@@ -140,10 +140,10 @@ const pageBtn = (lists, pageNum, searchVal) => {
 
     displayLists(lists, searchVal, currentPage, items_per_page) // when a button is clicked, display a clicked page
 
-    pagebtn.classList.add('pagebtn-active') // when a button is clicked, make it active
-
     let currbtn = document.querySelector('.pagebtn-active') // make a previously active button not active
     currbtn.classList.remove('pagebtn-active')
+
+    pagebtn.classList.add('pagebtn-active') // when a button is clicked, make it active
   })
 
   return pagebtn
